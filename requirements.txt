@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+motor
+beanie
+PyJWT
+passlib[bcrypt]
+web3
+torch
+scikit-learn
+onnxruntime
+pydantic-settings
