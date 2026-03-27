@@ -1,5 +1,25 @@
 .env
 
+# Datasets and Large Binary Files
+*.csv
+*.npy
+*.h5
+*.pkl
+*.pt
+*.onnx
+*.parquet
+*.feather
+
+# Data and Temporary Directories
+data/
+datasets/
+temp/
+outputs/
+**/__pycache__/
+.ipynb_checkpoints/
+
+# Specific Project Data Paths
+app/ai/AnamalyDetectionEngine/data/
 # Node modules
 /node_modules
 
