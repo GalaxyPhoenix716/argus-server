@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/Users/laksh/Documents/coding/devshouse/ml models/argus-server -type f \\\\\\(-name *.onnx -o -name *.pkl -o -name *.joblib -o -name *.h5 -o -name *.pt -o -name *.pth \\\\\\))",
+      "Bash(wc:*)",
+      "Bash(find '/c/Users/laksh/Documents/coding/devshouse/ml models/argus-server' -type f -not -path */.git/*)",
+      "Bash(git checkout:*)",
+      "Bash(find /c/Users/laksh/Documents/coding/devshouse/ml models/argus-server/app/schemas -type f -name *.py)",
+      "Bash(cd /c/Users/laksh/Documents/coding/devshouse/ml models/argus-server)",
+      "Bash(PYTHONPATH=/c/Users/laksh/Documents/coding/devshouse/ml models/argus-server/app python tests/test_threat_classifier.py)",
+      "Bash(pip install:*)"
+    ]
+  }
+}
