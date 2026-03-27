@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+motor
+beanie
+PyJWT
+passlib[bcrypt]
+web3
+torch
+scikit-learn
+onnxruntime
+pydantic-settings
+# --- AI / Anomaly Detection ---
+tensorflow          # Keras .h5 model loading & training
+tf2onnx             # Convert Keras models → ONNX (run once via tools/convert_to_onnx.py)
+onnx                # ONNX protobuf serialisation
+numpy
+pandas
