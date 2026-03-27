@@ -9,8 +9,8 @@ from typing import Dict, List, Optional
 from dataclasses import dataclass
 import logging
 
-from .temporal_analyzer import TemporalAnalysis, TemporalPattern
-from .rule_based_heuristics import ThreatType, AttackType, FailureType
+from app.ai.ThreatClassificationEngine.helpers.temporal_analyzer import TemporalAnalysis, TemporalPattern
+from app.ai.ThreatClassificationEngine.helpers.rule_based_heuristics import ThreatType, AttackType, FailureType
 
 logger = logging.getLogger(__name__)
 

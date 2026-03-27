@@ -11,9 +11,9 @@ import logging
 import time
 from datetime import datetime
 
-from .temporal_analyzer import TemporalPatternDetector, TemporalAnalysis, TemporalPattern
+from app.ai.ThreatClassificationEngine.helpers.temporal_analyzer import TemporalPatternDetector, TemporalAnalysis, TemporalPattern
 from .explanation_templates import ExplanationTemplates, TemplateContext
-from .config.threat_config import ExplainabilityConfig, get_config
+from app.ai.ThreatClassificationEngine.config.threat_config import ExplainabilityConfig, get_config
 
 logger = logging.getLogger(__name__)
 

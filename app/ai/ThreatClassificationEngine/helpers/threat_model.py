@@ -21,7 +21,7 @@ from imblearn.pipeline import Pipeline as ImbPipeline
 import optuna
 
 from .feature_extractor import AllFeatures
-from .config.threat_config import ModelConfig, TrainingConfig, get_config
+from app.ai.ThreatClassificationEngine.config.threat_config import ModelConfig, TrainingConfig, get_config
 
 logger = logging.getLogger(__name__)
 

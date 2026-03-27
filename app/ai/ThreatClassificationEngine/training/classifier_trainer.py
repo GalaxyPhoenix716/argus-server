@@ -27,9 +27,9 @@ from sklearn.metrics import (
 )
 import optuna
 
-from app.ai.threat_model import ThreatClassificationModel, features_to_array
-from app.ai.training.synthetic_attack_generator import SyntheticAttackGenerator, AttackType
-from app.config.threat_config import TrainingConfig, ModelConfig, get_config
+from app.ai.ThreatClassificationEngine.helpers.threat_model import ThreatClassificationModel, features_to_array
+from .synthetic_attack_generator import SyntheticAttackGenerator, AttackType
+from app.ai.ThreatClassificationEngine.config.threat_config import TrainingConfig, ModelConfig, get_config
 
 logger = logging.getLogger(__name__)
 

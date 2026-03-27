@@ -36,7 +36,7 @@ from typing import Optional
 import numpy as np
 import pandas as pd
 
-from helpers import (
+from .helpers import (
     AnomalyResult,
     ChannelConfig,
     _DATA_DIR,
@@ -46,6 +46,7 @@ from helpers import (
     compute_threshold,
     detect_anomalies,
     evaluate,
+    get_backend,
     load_cached_yhat,
     load_data,
     load_model,

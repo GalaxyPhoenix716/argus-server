@@ -1,5 +1,5 @@
-from crypto_utils import encrypt, decrypt, create_hash
-from blockchain import add_log, get_log, no_of_logs
+from .crypto_utils import encrypt, decrypt, create_hash
+from .blockchain import add_log, get_log, no_of_logs
 
 #All functions
 def create_log(event_type: str, data: str):

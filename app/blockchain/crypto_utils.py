@@ -4,7 +4,7 @@ import hashlib
 import os
 
 load_dotenv()
-key = os.getenv("ARGUS_ENCRYPTION_KEY").encode()
+key = os.getenv("ARGUS_ENCRYPTION_KEY", Fernet.generate_key().decode()).encode()
 cipher = Fernet(key)
 
 def encrypt(data: str) -> str:

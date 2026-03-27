@@ -9,10 +9,11 @@ from enum import Enum
 from typing import Dict, Optional, List, Tuple, Any
 from dataclasses import dataclass
 import logging
+import numpy as np
 
-from .feature_extractor import FeatureExtractor, AllFeatures
-from .rule_based_heuristics import RuleBasedHeuristics, RuleBasedResult, ThreatType
-from .threat_model import ThreatClassificationModel
+from .helpers.feature_extractor import FeatureExtractor, AllFeatures
+from .helpers.rule_based_heuristics import RuleBasedHeuristics, RuleBasedResult, ThreatType
+from .helpers.threat_model import ThreatClassificationModel
 from .config.threat_config import ThreatClassificationConfig, get_config
 
 logger = logging.getLogger(__name__)

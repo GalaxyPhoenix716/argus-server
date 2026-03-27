@@ -9,7 +9,7 @@ from typing import Dict, List, Optional
 import logging
 from datetime import datetime
 
-from app.ai.explainability_engine import ExplainabilityEngine
+from app.ai.ExplainablityEngine.explainability_engine import ExplainabilityEngine
 from app.schemas.explainability import (
     ThreatExplanationRequest,
     ThreatExplanationResponse,

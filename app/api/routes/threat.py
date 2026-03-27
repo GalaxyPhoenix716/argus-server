@@ -9,7 +9,7 @@ from typing import Dict, List, Optional
 import logging
 from datetime import datetime
 
-from app.ai.threat_classifier import ThreatClassifier
+from app.ai.ThreatClassificationEngine.threat_classifier import ThreatClassifier
 from app.schemas.threat import (
     ThreatClassificationRequest,
     ThreatClassificationResponse,

@@ -11,7 +11,7 @@ from dataclasses import dataclass
 import logging
 
 from .feature_extractor import AllFeatures
-from .config.threat_config import RuleBasedConfig, get_config
+from app.ai.ThreatClassificationEngine.config.threat_config import RuleBasedConfig, get_config
 
 logger = logging.getLogger(__name__)
 
