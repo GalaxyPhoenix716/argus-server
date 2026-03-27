@@ -1,4 +1,9 @@
 .env
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+
 
 # Datasets and Large Binary Files
 *.csv
