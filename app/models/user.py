@@ -6,7 +6,7 @@ from enum import Enum
 
 from pydantic import BaseModel, Field
 
-from app.models.ids import generate_user_id
+from app.services.ids import generate_user_id
 
 
 class UserRole(str, Enum):
