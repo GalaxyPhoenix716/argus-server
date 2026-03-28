@@ -37,12 +37,16 @@ def _build_credentials() -> credentials.Certificate:
 def initialize_firebase() -> None:
     """Initialize Firebase Admin SDK and Firestore client."""
     global _db
-    if not firebase_admin._apps:
-        cred = _build_credentials()
-        firebase_admin.initialize_app(cred)
-        logger.info("Firebase Admin SDK initialized (project: %s)", settings.firebase_project_id)
-    _db = firebase_firestore.client()
-    logger.info("Firestore client ready")
+    try:
+        if not firebase_admin._apps:
+            cred = _build_credentials()
+            firebase_admin.initialize_app(cred)
+            logger.info("Firebase Admin SDK initialized (project: %s)", settings.firebase_project_id)
+        _db = firebase_firestore.client()
+        logger.info("Firestore client ready")
+    except Exception as e:
+        logger.warning(f"Could not initialize Firebase: {e}. Running in demo/offline mode without DB.")
+        _db = None
 
 
 def get_firestore():

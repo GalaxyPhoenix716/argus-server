@@ -16,9 +16,17 @@ from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
 from sklearn.utils.class_weight import compute_sample_weight
-from imblearn.over_sampling import SMOTE
-from imblearn.pipeline import Pipeline as ImbPipeline
-import optuna
+try:
+    from imblearn.over_sampling import SMOTE
+    from imblearn.pipeline import Pipeline as ImbPipeline
+except ImportError:
+    SMOTE = None
+    ImbPipeline = None
+
+try:
+    import optuna
+except ImportError:
+    optuna = None
 
 from .feature_extractor import AllFeatures
 from app.ai.ThreatClassificationEngine.config.threat_config import ModelConfig, TrainingConfig, get_config

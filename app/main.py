@@ -8,6 +8,9 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.firebase import initialize_firebase
 from app.api.routes import auth
+from app.api.routes import streaming
+from app.api.routes import sim_receiver
+from app.api.routes import blockchain
 
 # ── Logging ───────────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -49,6 +52,9 @@ app.add_middleware(
 
 # ── Routers ───────────────────────────────────────────────────────────────────
 app.include_router(auth.router)
+app.include_router(streaming.router)      # /stream  (dashboard WebSocket)
+app.include_router(sim_receiver.router)   # /ws/sim  (simulation WebSocket) + REST endpoints
+app.include_router(blockchain.router)     # /api/v1/blockchain/*
 
 
 # ── Health check ──────────────────────────────────────────────────────────────

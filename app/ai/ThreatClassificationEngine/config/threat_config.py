@@ -150,7 +150,7 @@ class RuleBasedConfig:
     })
 
     # Confidence calculation
-    rule_confidence_base: float = 0.8
+    rule_confidence_base: float = 0.3   # Minimum confidence needed to return a result; lowered from 0.8 so real anomalies aren't discarded
     rule_confidence_decay: float = 0.1
 
 

@@ -446,16 +446,22 @@ class FeatureExtractor:
 
         # Rolling mean deviation
         if len(window_data) > 10:
-            rolling_mean = pd.Series(window_data[:, 0]).rolling(window=min(10, len(window_data)//2)).mean()
-            mean_deviation = np.mean(np.abs(window_data[:, 0] - rolling_mean.dropna()))
+            series = pd.Series(window_data[:, 0])
+            roll_window = min(10, len(window_data) // 2)
+            rolling_mean = series.rolling(window=roll_window).mean()
+            mean_deviation_series = (series - rolling_mean).abs().dropna()
+            mean_deviation = float(mean_deviation_series.mean()) if not mean_deviation_series.empty else 0.0
         else:
             mean_deviation = 0.0
         rolling_mean_deviation = float(mean_deviation)
 
         # Rolling standard deviation
         if len(window_data) > 10:
-            rolling_std = pd.Series(window_data[:, 0]).rolling(window=min(10, len(window_data)//2)).std()
-            std_deviation = np.mean(rolling_std.dropna())
+            series = pd.Series(window_data[:, 0])
+            roll_window = min(10, len(window_data) // 2)
+            rolling_std = series.rolling(window=roll_window).std()
+            std_non_na = rolling_std.dropna()
+            std_deviation = float(std_non_na.mean()) if not std_non_na.empty else 0.0
         else:
             std_deviation = float(np.std(window_data[:, 0]))
         rolling_std_deviation = float(std_deviation)

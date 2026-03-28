@@ -137,12 +137,16 @@ class ThreatClassifier:
 
             # Extract features
             feature_extraction_start = time.time()
+            y_true_arr = y_true if y_true is not None else np.array([])
+            y_hat_arr = y_hat if y_hat is not None else np.array([])
+            error_signal_arr = error_signal if error_signal is not None else np.array([])
+
             features = self.feature_extractor.extract_all_features(
                 anomaly_result,
                 input_sequence,
-                y_true or np.array([]),
-                y_hat or np.array([]),
-                error_signal or np.array([]),
+                y_true_arr,
+                y_hat_arr,
+                error_signal_arr,
                 window_start,
                 window_end
             )
@@ -158,9 +162,9 @@ class ThreatClassifier:
             )
 
             # ML-based classification (if model is available)
-            ml_result = None
             ml_prediction = None
             ml_confidence = None
+            features_array = None
 
             if self.model is not None and self.model.fitted:
                 ml_start = time.time()
@@ -191,7 +195,7 @@ class ThreatClassifier:
             )
 
             # Get top features
-            top_features = self._get_top_features(features, features_array if self.model else None)
+            top_features = self._get_top_features(features, features_array)
 
             # Generate reasoning
             reasoning = self._generate_reasoning(
