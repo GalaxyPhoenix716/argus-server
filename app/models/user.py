@@ -1,23 +1,18 @@
 """
 User domain model.
 """
-import random
-import string
 from datetime import datetime, timezone
 from enum import Enum
 
 from pydantic import BaseModel, Field
+
+from app.models.ids import generate_user_id
 
 
 class UserRole(str, Enum):
     ADMIN = "admin"
     FORENSIC = "forensic"
 
-
-def generate_user_id() -> str:
-    """Generate a unique 5-character alphanumeric user ID (uppercase + digits)."""
-    chars = string.ascii_uppercase + string.digits
-    return "".join(random.choices(chars, k=5))
 
 
 class User(BaseModel):
