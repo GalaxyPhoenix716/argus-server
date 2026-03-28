@@ -40,10 +40,9 @@ from app.services.ids import generate_mission_id
 
 
 class MissionStatus(str, Enum):
-    PENDING   = "pending"     # created, simulator not yet connected
-    ACTIVE    = "active"      # simulator streaming live data
-    COMPLETED = "completed"   # mission ended normally
-    ABORTED   = "aborted"     # mission terminated early
+    ACTIVE = "active"  # simulator streaming live data
+    COMPLETED = "completed"  # mission ended normally
+    PENDING = "pending"  # mission not started yet
 
 
 # ── Audit Log Entry ────────────────────────────────────────────────────────────
@@ -62,25 +61,23 @@ class AuditLogEntry(BaseModel):
     timestamp       : When this entry was created (UTC)
     """
 
-    firestore_ref   : str            = Field(..., description="Firestore doc ID of the encrypted log")
-    tx_hash         : Optional[str]  = Field(None, description="Blockchain transaction hash")
-    log_index       : Optional[int]  = Field(None, description="On-chain log index")
-    event_type      : str            = Field(..., description="Event type label")
-    data_hash       : str            = Field(..., description="SHA-256 of encrypted payload")
-    storage_backend : str            = Field("firestore", description="'firestore' or 'ipfs'")
-    timestamp       : datetime       = Field(
-        default_factory=lambda: datetime.now(timezone.utc)
-    )
+    firestore_ref: str = Field(..., description="Firestore doc ID of the encrypted log")
+    tx_hash: Optional[str] = Field(None, description="Blockchain transaction hash")
+    log_index: Optional[int] = Field(None, description="On-chain log index")
+    event_type: str = Field(..., description="Event type label")
+    data_hash: str = Field(..., description="SHA-256 of encrypted payload")
+    storage_backend: str = Field("firestore", description="'firestore' or 'ipfs'")
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
     def to_firestore(self) -> dict:
         return {
-            "firestore_ref":   self.firestore_ref,
-            "tx_hash":         self.tx_hash,
-            "log_index":       self.log_index,
-            "event_type":      self.event_type,
-            "data_hash":       self.data_hash,
+            "firestore_ref": self.firestore_ref,
+            "tx_hash": self.tx_hash,
+            "log_index": self.log_index,
+            "event_type": self.event_type,
+            "data_hash": self.data_hash,
             "storage_backend": self.storage_backend,
-            "timestamp":       self.timestamp.isoformat(),
+            "timestamp": self.timestamp.isoformat(),
         }
 
     @classmethod
@@ -147,11 +144,11 @@ class Mission(BaseModel):
         """Serialize to a Firestore-compatible dict (excludes runtime-only fields)."""
         return {
             "mission_name": self.mission_name,
-            "created_by":   self.created_by,
-            "status":       self.status.value,
-            "channel_id":   self.channel_id,
-            "created_at":   self.created_at.isoformat(),
-            "updated_at":   self.updated_at.isoformat(),
+            "created_by": self.created_by,
+            "status": self.status.value,
+            "channel_id": self.channel_id,
+            "created_at": self.created_at.isoformat(),
+            "updated_at": self.updated_at.isoformat(),
         }
 
     @classmethod
@@ -172,4 +169,4 @@ class Mission(BaseModel):
         self.updated_at = datetime.now(timezone.utc)
 
     class Config:
-        use_enum_values = False   # keep enum objects in memory
+        use_enum_values = False  # keep enum objects in memory

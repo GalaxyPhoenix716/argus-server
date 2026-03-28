@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.firebase import initialize_firebase
-from app.api.routes import auth
+from app.api.routes import auth, mission
 
 # ── Logging ───────────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -49,6 +49,7 @@ app.add_middleware(
 
 # ── Routers ───────────────────────────────────────────────────────────────────
 app.include_router(auth.router)
+app.include_router(mission.router)
 
 
 # ── Health check ──────────────────────────────────────────────────────────────
