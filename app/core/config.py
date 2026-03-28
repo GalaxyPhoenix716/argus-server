@@ -18,7 +18,11 @@ class Settings(BaseSettings):
     # ── Blockchain ────────────────────────────────────────────────────────────
     argus_encryption_key: str = ""
     blockchain_rpc_url: str = "http://127.0.0.1:8545"
+    contract_address: str = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
     private_key: str = ""
+
+    # ── Storage ───────────────────────────────────────────────────────────────
+    ipfs_gateway: str = ""   # set to activate IPFS backend, e.g. /ip4/127.0.0.1/tcp/5001
 
     class Config:
         env_file = ".env"

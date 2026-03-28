@@ -11,6 +11,7 @@ from app.api.routes import auth
 from app.api.routes import streaming
 from app.api.routes import sim_receiver
 from app.api.routes import blockchain
+from app.api.routes import mission
 
 # ── Logging ───────────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -55,6 +56,7 @@ app.include_router(auth.router)
 app.include_router(streaming.router)      # /stream  (dashboard WebSocket)
 app.include_router(sim_receiver.router)   # /ws/sim  (simulation WebSocket) + REST endpoints
 app.include_router(blockchain.router)     # /api/v1/blockchain/*
+app.include_router(mission.router)
 
 
 # ── Health check ──────────────────────────────────────────────────────────────

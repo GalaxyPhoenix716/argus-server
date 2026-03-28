@@ -52,7 +52,13 @@ class UserResponse(BaseModel):
 
 
 class LoginRequest(BaseModel):
-    username: str = Field(..., description="UserID")
+    user_id: str = Field(
+        ...,
+        min_length=5,
+        max_length=5,
+        pattern=r"^[A-Za-z0-9]{5}$",
+        description="5-character alphanumeric user ID (e.g. ADM01, FOR01)",
+    )
     password: str = Field(..., description="Plain-text password")
 
 

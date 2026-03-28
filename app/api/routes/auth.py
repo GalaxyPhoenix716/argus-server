@@ -11,7 +11,7 @@ from app.core.security import create_access_token, verify_password
 from app.api.deps import get_current_user
 from app.models.user import User
 from app.schemas.user import LoginRequest, TokenResponse, UserResponse
-from app.services.user_service import get_user_by_username, get_user_by_email
+from app.services.user_service import get_user_by_id
 
 logger = logging.getLogger(__name__)
 
@@ -23,14 +23,11 @@ router = APIRouter(prefix="/api/v1/auth", tags=["auth"])
 @router.post("/login", response_model=TokenResponse, summary="Obtain a JWT access token")
 async def login(payload: LoginRequest) -> TokenResponse:
     """
-    Authenticate with **username** (or email) and **password**.
+    Authenticate with **user_id** (e.g. ADM01) and **password**.
 
     Returns a signed JWT bearer token valid for `jwt_expire_minutes`.
     """
-    # Support login by username OR email
-    user: User | None = await get_user_by_username(payload.username)
-    if user is None:
-        user = await get_user_by_email(payload.username)
+    user: User | None = await get_user_by_id(payload.user_id)
 
     # Unified message to avoid username enumeration
     _invalid = HTTPException(
@@ -63,7 +60,7 @@ async def login(payload: LoginRequest) -> TokenResponse:
         expires_delta=timedelta(seconds=expires_in),
     )
 
-    logger.info("User '%s' (%s) logged in", user.username, user.role)
+    logger.info("User '%s' (%s) logged in", user.id, user.role)
 
     return TokenResponse(
         access_token=access_token,
